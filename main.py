@@ -1,2 +1,1 @@
 # main file
-print("aaa")
