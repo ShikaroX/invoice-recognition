@@ -1,0 +1,3 @@
+spacy~=3.5.0
+re~=2.2.1
+pt-core-news-sm~=3.5.0
