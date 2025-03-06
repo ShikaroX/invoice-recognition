@@ -1,0 +1,9 @@
+opencv-python~=4.8.0.76
+pytesseract~=0.3.10
+pdf2image~=1.16.3
+poppler-utils~=22.12.0
+
+Arquivo "por.traineddata" presente em "requirement" no path:
+"Tesseract-OCR\tessdata"
+
+(para suporte de leitura em português)
