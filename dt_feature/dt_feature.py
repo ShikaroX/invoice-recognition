@@ -1,5 +1,6 @@
 import spacy
 import re
+import json
 
 def extract_receipt_fields(text):
     nlp = spacy.load("pt_core_news_sm")
@@ -48,5 +49,7 @@ if __name__ == "__main__":
     
     fields_extracted = extract_receipt_fields(text)
     
-    for key, value in fields_extracted.items():
-        print(f"{key.capitalize()}: {value}")
+    with open("receipt_data.json", "w", encoding="utf-8") as json_file:
+        json.dump(fields_extracted, json_file, ensure_ascii=False, indent=4)
+    
+    print("Dados extraídos salvos em receipt_data.json")
