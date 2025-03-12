@@ -27,31 +27,42 @@ def preProcessingDigitalizedReceipt(image):
     resized_img = resizeImage(img)
     grayscale_img = grayscale(resized_img)
 
-    thresh = cv2.adaptiveThreshold(grayscale_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 2)
-    kernel_2 = np.ones((2, 2), np.uint8)
-    dilate = cv2.dilate(thresh, kernel_2)
-    kernel_9 = np.ones((9, 9), np.uint8)
-    erode = cv2.erode(dilate, kernel_9, iterations=7)
-    edge_det = cv2.Canny(erode, 150, 200)
+    median = cv2.medianBlur(grayscale_img,5)
 
-    final_edge_det = cv2.dilate(edge_det, kernel_2, iterations=2)
+    thresh = cv2.adaptiveThreshold(median, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 2)
 
-    contours, _ = cv2.findContours(final_edge_det, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    kernel = np.ones((5, 5), np.uint8)
+    eroded_img = cv2.erode(thresh, kernel, iterations=7)
 
-    if contours:
-        largest_contour = max(contours, key=cv2.contourArea)
+    edges = cv2.Canny(eroded_img, 100, 200)
 
-        x, y, w, h = cv2.boundingRect(largest_contour)
+    kernel = np.ones((4, 4), np.uint8)
+    edges_dilate = cv2.dilate(edges, kernel)
 
-        #cv2.rectangle(resized_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        cropped_img = grayscale_img[y:y+h, x:x+w]    
+    contours, _ = cv2.findContours(edges_dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    mask = np.zeros_like(edges_dilate)
+
+    min_area = 2500
+    for contour in contours:
+        if cv2.contourArea(contour) > min_area:
+            cv2.drawContours(mask, [contour], -1, 255, thickness=cv2.FILLED)
+
+            x, y, w, h = cv2.boundingRect(contour)
+            cv2.rectangle(mask, (x, y), (x + w, y + h), 255, thickness=2)
+
+            bounding_box = (x, y, w, h)
+
+    if bounding_box:
+        x, y, w, h = bounding_box
+        cropped_img = resized_img[y:y + h, x:x+w]
+        return cropped_img
     else:
-        print("Contours not found!")
+        print("Error founding bounding box!")
 
-    return cropped_img
+    return resized_img
 
 def pdf2Image(pdf_path):
-
     images = convert_from_path(pdf_path)
 
     output_folder = "receipts"
