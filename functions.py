@@ -21,6 +21,8 @@ def preProcessingDigitalReceipt(image):
 
     return grayscale_img
 
+
+
 def preProcessingDigitalizedReceipt(image):
     img = cv2.imread(image)
 
@@ -49,18 +51,43 @@ def preProcessingDigitalizedReceipt(image):
             cv2.drawContours(mask, [contour], -1, 255, thickness=cv2.FILLED)
 
             x, y, w, h = cv2.boundingRect(contour)
-            cv2.rectangle(mask, (x, y), (x + w, y + h), 255, thickness=2)
+            # cv2.rectangle(resized_img, (x, y), (x + w, y + h), (0, 0, 255), thickness=2)
+
+            top_left = (contour[contour[:, :, 0].argmin()][0])
+            top_right = (contour[contour[:, :, 0].argmax()][0]) 
+            bottom_left = (contour[contour[:, :, 1].argmin()][0])  
+            bottom_right = (contour[contour[:, :, 1].argmax()][0])
+
+            points = np.array([top_left, top_right, bottom_left, bottom_right])
+            
+            center = np.mean(points, axis=0)
+            rect = cv2.minAreaRect(points)
+            angle = rect[2]
+            new_angle = -(90 - angle)
+
+            rotation_matrix  = cv2.getRotationMatrix2D(center, new_angle, 1.0)
+
+            rotated_img = cv2.warpAffine(resized_img, rotation_matrix, (resized_img.shape[0], resized_img.shape[1]), borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
+
+            # print(angle)
+            # print(new_angle)
+
+            # cv2.circle(resized_img, top_left, 5, (0, 255, 0), -1)
+            # cv2.circle(resized_img, top_right, 5, (0, 255, 0), -1)
+            # cv2.circle(resized_img, bottom_left, 5, (0, 255, 0), -1)
+            # cv2.circle(resized_img, bottom_right, 5, (0, 255, 0), -1)
+            # cv2.circle(resized_img, (int(center[0]), int(center[1])), 5, (255, 0, 0), -1)
 
             bounding_box = (x, y, w, h)
 
     if bounding_box:
         x, y, w, h = bounding_box
-        cropped_img = resized_img[y:y + h, x:x+w]
+        cropped_img = rotated_img[y:y + h, x:x+w]
         return cropped_img
     else:
         print("Error founding bounding box!")
 
-    return resized_img
+    return
 
 def pdf2Image(pdf_path):
     images = convert_from_path(pdf_path)

@@ -29,7 +29,7 @@ elif opc == 1:
     final_image = functions.preProcessingDigitalReceipt(file)
 
 elif opc == 2:
-    file = "receipts/fatura_digitalizada_1.jpg"
+    file = "receipts/fatura_digitalizada_3.jpg"
 
     if os.path.splitext(file)[1].lower() == ".pdf":
         functions.pdf2Image(file)
