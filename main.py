@@ -20,7 +20,7 @@ opc = int(input("Digite a opção: "))
 if opc == 0:
     exit()
 elif opc == 1:
-    file = "pdf_files/fatura_digital_3.pdf"
+    file = "pdf_files/fatura_digital_5.pdf"
 
     if os.path.splitext(file)[1].lower() == ".pdf":
         functions.pdf2Image(file)
@@ -29,7 +29,7 @@ elif opc == 1:
     final_image = functions.preProcessingDigitalReceipt(file)
 
 elif opc == 2:
-    file = "receipts/fatura_digitalizada_3.jpg"
+    file = "receipts/fatura_digitalizada_7.jpg"
 
     if os.path.splitext(file)[1].lower() == ".pdf":
         functions.pdf2Image(file)
