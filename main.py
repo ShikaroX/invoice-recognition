@@ -20,22 +20,24 @@ opc = int(input("Digite a opção: "))
 if opc == 0:
     exit()
 elif opc == 1:
-    file = "pdf_files/fatura_digital_5.pdf"
+    image = "pdf_files/fatura_digital_5.pdf"
 
-    if os.path.splitext(file)[1].lower() == ".pdf":
-        functions.pdf2Image(file)
-        file = "receipts/fatura_pagina_1.jpg"
+    if os.path.splitext(image)[1].lower() == ".pdf":
+        functions.pdf2Image(image)
+        image = "receipts/fatura_pagina_1.jpg"
 
-    final_image = functions.preProcessingDigitalReceipt(file)
+    final_image = functions.preProcessingDigitalReceipt(image)
 
 elif opc == 2:
-    file = "receipts/fatura_digitalizada_7.jpg"
+    image = "receipts/fatura_digitalizada_1.jpg"
 
-    if os.path.splitext(file)[1].lower() == ".pdf":
-        functions.pdf2Image(file)
-        file = "receipts/fatura_pagina_1.jpg"
+    if os.path.splitext(image)[1].lower() == ".pdf":
+        functions.pdf2Image(image)
+        image = "receipts/fatura_pagina_1.jpg"
 
-    final_image = functions.preProcessingDigitalizedReceipt(file)
+    img = cv2.imread(image)
+
+    final_image = functions.preProcessingDigitalizedReceipt(img)
 
 cv2.imshow("Final image", final_image)
 cv2.waitKey(0)
