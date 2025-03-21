@@ -8,7 +8,7 @@ Tesseract-OCR\tessdata\por.traineddata
 
 ### Requirements
 - Tesseract OCR
-- The "por.traineddata" file (for Portuguese language support)
+- The "por.traineddata" file (for Portuguese language support) found in https://github.com/tesseract-ocr/tessdata
 ## Additional Information
 - In the future, we plan to add support for some more languages
 - For more details, visit the official Tesseract OCR documentation: Tesseract Wiki
