@@ -1,6 +1,6 @@
 ### Tesseract OCR - Portuguese Language Support
 
-##Installation
+## Installation
 Ensure that the "por.traineddata" file is present in the "tessdata" directory inside the "Tesseract-OCR" path:
 ```
 Tesseract-OCR\tessdata\por.traineddata
