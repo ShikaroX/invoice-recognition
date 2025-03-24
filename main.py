@@ -6,6 +6,7 @@ from pdf2image import convert_from_path
 import os
 from sys import exit
 import functions
+import ec_feature
 
 print("~" * 40)
 print("\t\tMENU")
@@ -38,6 +39,16 @@ elif opc == 2:
     img = cv2.imread(image)
 
     final_image = functions.preProcessingDigitalizedReceipt(img)
+
+extracted_text = ec_feature.extract_text_from_image(final_image)
+    
+if extracted_text:
+    print("Texto extraído:")
+    print(extracted_text)
+    with open("extracted_text.txt", "w", encoding="utf-8") as f:
+        f.write(extracted_text)
+else:
+    print("Nenhum texto foi extraído.")
 
 cv2.imshow("Final image", final_image)
 cv2.waitKey(0)
