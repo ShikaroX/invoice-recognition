@@ -1,0 +1,24 @@
+{
+    "supermercado": "PCDIGE",
+    "data": "Desconhecido",
+    "hora": "15:01:16",
+    "numero_fatura": "Desconhecido",
+    "nif_supermercado": "Desconhecido",
+    "total": "Desconhecido",
+    "troco": "Desconhecido",
+    "metodo_pagamento": "Desconhecido",
+    "produtos": [
+        {
+            "descricao": "Capital Social",
+            "valor": "150.00"
+        },
+        {
+            "descricao": "O pAn ENAA",
+            "valor": "1.03"
+        },
+        {
+            "descricao": "CULA DATA DE CARGA",
+            "valor": "1.03"
+        }
+    ]
+}

@@ -7,6 +7,7 @@ import os
 from sys import exit
 import functions
 import ec_feature
+import dt_feature
 
 print("~" * 40)
 print("\t\tMENU")
@@ -30,7 +31,7 @@ elif opc == 1:
     final_image = functions.preProcessingDigitalReceipt(image)
 
 elif opc == 2:
-    image = "receipts/fatura_digitalizada_1.jpg"
+    image = "receipts/fatura_digitalizada_7.jpg"
 
     if os.path.splitext(image)[1].lower() == ".pdf":
         functions.pdf2Image(image)
@@ -43,8 +44,7 @@ elif opc == 2:
 extracted_text = ec_feature.extract_text_from_image(final_image)
     
 if extracted_text:
-    print("Texto extraído:")
-    print(extracted_text)
+    print("Texto extraído salvo em extracted_text.txt")
     with open("extracted_text.txt", "w", encoding="utf-8") as f:
         f.write(extracted_text)
 else:
@@ -53,4 +53,12 @@ else:
 cv2.imshow("Final image", final_image)
 cv2.waitKey(0)
 
+with open("extracted_text.txt", "r", encoding="utf-8") as f:
+    text = f.read()
     
+fields_extracted = dt_feature.extract_receipt_fields(text)
+    
+with open("receipt_data.json", "w", encoding="utf-8") as json_file:
+    dt_feature.json.dump(fields_extracted, json_file, ensure_ascii=False, indent=4)
+    
+print("Dados extraídos salvos em receipt_data.json")
