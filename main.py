@@ -8,6 +8,8 @@ from sys import exit
 import functions
 import ec_feature
 import dt_feature
+import deepseek
+
 
 print("~" * 40)
 print("\t\tMENU")
@@ -28,10 +30,12 @@ elif opc == 1:
         functions.pdf2Image(image)
         image = "receipts/fatura_pagina_1.jpg"
 
-    final_image = functions.preProcessingDigitalReceipt(image)
+    img = cv2.imread(image)
+
+    final_image = functions.preProcessingDigitalReceipt(img)
 
 elif opc == 2:
-    image = "receipts/fatura_digitalizada_7.jpg"
+    image = "receipts/fatura_digitalizada_2.jpg"
 
     if os.path.splitext(image)[1].lower() == ".pdf":
         functions.pdf2Image(image)
@@ -42,11 +46,15 @@ elif opc == 2:
     final_image = functions.preProcessingDigitalizedReceipt(img)
 
 extracted_text = ec_feature.extract_text_from_image(final_image)
+
+system_prompt = "Corrige me este texto: "
+
+enhanced_text = deepseek.ask_deepseek(extracted_text, system_prompt)
     
 if extracted_text:
     print("Texto extraído salvo em extracted_text.txt")
     with open("extracted_text.txt", "w", encoding="utf-8") as f:
-        f.write(extracted_text)
+        f.write(enhanced_text)
 else:
     print("Nenhum texto foi extraído.")
 

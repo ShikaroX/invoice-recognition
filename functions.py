@@ -4,19 +4,14 @@ import cv2
 from pdf2image import convert_from_path
 import os
 
-def resizeImage(image):
-    width = 900
-    height = 1100
-
+def resizeImage(image, width, height):
     return cv2.resize(image, (width, height))
 
 def grayscale(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 def preProcessingDigitalReceipt(image):
-    img = cv2.imread(image)
-
-    resized_img = resizeImage(img)
+    resized_img = resizeImage(image, 1600, 2400)    
     grayscale_img = grayscale(resized_img)
 
     return grayscale_img
@@ -29,7 +24,7 @@ def preProcessingDigitalizedReceipt(image):
 
     :return: Preprocessed image.
     """
-    resized_img = resizeImage(image)                                                                            
+    resized_img = resizeImage(image, 1600, 2400)                                                                            
     grayscale_img = grayscale(resized_img)                                                                      # Converts BGR to grayscale
 
     median = cv2.medianBlur(grayscale_img, 5)                                                                   # Apply the median filter with a kernel size of 5.
@@ -56,19 +51,12 @@ def preProcessingDigitalizedReceipt(image):
             x, y, w, h = cv2.boundingRect(contour)
             cv2.rectangle(resized_img, (x, y), (x + w, y + h), (0, 0, 255), thickness=2)
 
-            print(x, y, w, h)
-
             points = contour.reshape(-1, 2)
 
             top_left = (min(points, key=lambda p: p[0] + p[1]))
             top_right = (max(points, key=lambda p: p[0] - p[1])) 
             bottom_left = (min(points, key=lambda p: p[0] - p[1]))
             bottom_right = (max(points, key=lambda p: p[0] + p[1]))
-
-            print(top_left)
-            print(top_right)
-            print(bottom_left)
-            print(bottom_right)
 
             points = np.array([top_left, top_right, bottom_left, bottom_right])
             
@@ -84,11 +72,6 @@ def preProcessingDigitalizedReceipt(image):
 
             if angle >= 85 or angle <= 5:
                 need_rotation = False
-
-            print(angle)
-            print(angle_rotation)
-            print(angle + angle_rotation)
-            print(need_rotation)
 
             if need_rotation:
 
@@ -128,8 +111,6 @@ def preProcessingDigitalizedReceipt(image):
 
             bounding_box = (x, y, w, h)
 
-            print(x, y, w, h)
-
     if bounding_box:
         cropped_img = grayscale_img[y:y + h, x:x+w]
     else:
@@ -138,10 +119,9 @@ def preProcessingDigitalizedReceipt(image):
     
     gaussian_blur = cv2.GaussianBlur(cropped_img, (3, 3), 0)
 
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(5,5))
-    enhanced_img = clahe.apply(gaussian_blur)
+    _, binary = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     
-    return enhanced_img
+    return binary
 
 def pdf2Image(pdf_path):
     images = convert_from_path(pdf_path)

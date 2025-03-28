@@ -8,7 +8,7 @@ def extract_receipt_fields(text):
     
     fields = {}
     lines = text.split('\n')
-    fields["supermercado"] = lines[0].strip() if lines else "Desconhecido"
+    fields["empresa"] = lines[0].strip() if lines else "Desconhecido"
     
     date_pattern = re.compile(r'\b(\d{2}[/-]\d{2}[/-]\d{2,4})\b')
     date_match = date_pattern.search(text)
@@ -24,7 +24,7 @@ def extract_receipt_fields(text):
     
     nif_pattern = re.compile(r'\bNIF[:\s]*(\d{9})\b', re.IGNORECASE)
     nif_match = nif_pattern.search(text)
-    fields["nif_supermercado"] = nif_match.group(1) if nif_match else "Desconhecido"
+    fields["nif", "contribuinte", "numero de identificação fiscal"] = nif_match.group(1) if nif_match else "Desconhecido"
     
     total_pattern = re.compile(r'(?i)total\s*[a-z]*[:\s]+(\d+[.,]\d{2})')
     total_match = total_pattern.search(text)
