@@ -5,7 +5,7 @@ from pdf2image import convert_from_path
 import os
 
 def resizeImage(image, width, height):
-    return cv2.resize(image, (width, height))
+    return cv2.resize(image, (width, height), interpolation=cv2.INTER_CUBIC)
 
 def grayscale(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -24,103 +24,72 @@ def preProcessingDigitalizedReceipt(image):
 
     :return: Preprocessed image.
     """
-    resized_img = resizeImage(image, 1600, 2400)                                                                            
-    grayscale_img = grayscale(resized_img)                                                                      # Converts BGR to grayscale
 
-    median = cv2.medianBlur(grayscale_img, 5)                                                                   # Apply the median filter with a kernel size of 5.
+    resized_img = resizeImage(image, 900, 1100)
 
-    thresh = cv2.adaptiveThreshold(median, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 2)       # Gaussian threshold with a kernel size of 15.
+    grayscale_img = grayscale(resized_img)
 
-    kernel = np.ones((5, 5), np.uint8)
-    eroded_img = cv2.erode(thresh, kernel, iterations=7)                                                        # Image erode with a kernel size of 5, using 7 iterations.
+    gaussian_blur = cv2.GaussianBlur(grayscale_img, (3, 3), 0)
 
-    edges = cv2.Canny(eroded_img, 100, 200)                                                                     # Edge detection using canny.
+    thresh = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
-    kernel = np.ones((4, 4), np.uint8)
-    edges_dilate = cv2.dilate(edges, kernel)
+    kernel = np.ones((30, 30), np.uint8)
+    dilate = cv2.dilate(thresh, kernel)
 
-    contours, _ = cv2.findContours(edges_dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    mask = np.zeros_like(edges_dilate)
-
-    min_area = 2500
+    mask = np.zeros_like(dilate)
+    min_area = 50000
     for contour in contours:
-        if cv2.contourArea(contour) > min_area :
+        if cv2.contourArea(contour) > min_area:
             cv2.drawContours(mask, [contour], -1, 255, thickness=cv2.FILLED)
 
             x, y, w, h = cv2.boundingRect(contour)
-            cv2.rectangle(resized_img, (x, y), (x + w, y + h), (0, 0, 255), thickness=2)
+            # cv2.rectangle(resized_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-            points = contour.reshape(-1, 2)
-
-            top_left = (min(points, key=lambda p: p[0] + p[1]))
-            top_right = (max(points, key=lambda p: p[0] - p[1])) 
-            bottom_left = (min(points, key=lambda p: p[0] - p[1]))
-            bottom_right = (max(points, key=lambda p: p[0] + p[1]))
-
-            points = np.array([top_left, top_right, bottom_left, bottom_right])
-            
-            center = np.mean(points, axis=0)
-            rect = cv2.minAreaRect(points)
+            rect = cv2.minAreaRect(contour)
+            center = rect[0]
             angle = rect[2]
-            need_rotation = True
 
-            if 45 > angle > 0:
-                angle_rotation = angle
+            if 45 <= angle <= 90:
+                new_angle = -(90 - angle)
             else:
-                angle_rotation = -(90 - angle)
+                new_angle = angle
 
-            if angle >= 85 or angle <= 5:
-                need_rotation = False
+            print(angle)
+            print(new_angle)
+            
+            matrix = cv2.getRotationMatrix2D((center[0], center[1]), new_angle, 1.0)
 
-            if need_rotation:
+            rotated_mask = cv2.warpAffine(mask, matrix, (resized_img.shape[1], resized_img.shape[0]), borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0))
+    
+            contours, _ = cv2.findContours(rotated_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-                (h, w) = resized_img.shape[:2]
-                center = (w // 2, h // 2)
+            rotated_img = cv2.warpAffine(grayscale_img, matrix, (resized_img.shape[1], resized_img.shape[0]), borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
 
-                rotation_matrix  = cv2.getRotationMatrix2D(center, angle_rotation, 1.0)
+            min_area = 50000
+            for contour in contours:
+                if cv2.contourArea(contour) > min_area:
+                    x, y, w, h = cv2.boundingRect(contour)
+                    # cv2.rectangle(rotated_img, (x, y), (x + w, y + h), (0, 255, 255), 2)
 
-                cos = np.abs(rotation_matrix[0, 0])
-                sin = np.abs(rotation_matrix[0, 1])
-                new_h = int((h * cos) + (w * sin))  
-                new_w = w  
+            # box = np.intp(cv2.boxPoints(rect))
 
-                shift_y = max(0, new_h - h) - 200
-                rotation_matrix[1, 2] += shift_y // 2
-
-                rotated_mask = cv2.warpAffine(mask, rotation_matrix, (new_w, new_h), borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0))
-
-                edges = cv2.Canny(rotated_mask, 100, 200)
-
-                contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-                min_area = 2500
-                for contour in contours:
-                    if cv2.contourArea(contour) > min_area:
-                        x, y, w, h = cv2.boundingRect(contour)
-
-                rotated_img = cv2.warpAffine(grayscale_img, rotation_matrix, (new_w, new_h), borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
-
-                grayscale_img = rotated_img
-
-            cv2.circle(resized_img, top_left, 5, (0, 255, 0), -1)
-            cv2.circle(resized_img, top_right, 5, (0, 255, 0), -1)
-            cv2.circle(resized_img, bottom_left, 5, (0, 255, 0), -1)
-            cv2.circle(resized_img, bottom_right, 5, (0, 255, 0), -1)
-            cv2.circle(resized_img, (int(center[0]), int(center[1])), 5, (255, 0, 0), -1)
+            # cv2.circle(resized_img, (int(center[0]), int(center[1])), 7, (255, 0, 0), -1)
+            # cv2.polylines(resized_img, [box], True, (255, 0, 0), 2)
 
             bounding_box = (x, y, w, h)
 
-    if bounding_box:
-        cropped_img = grayscale_img[y:y + h, x:x+w]
-    else:
-        print("Bounding box not found!")
-        return 
-    
-    gaussian_blur = cv2.GaussianBlur(cropped_img, (3, 3), 0)
+            if bounding_box:
+                cropped_img = rotated_img[y:y+h, x:x+w]
+            else:
+                print("Bounding box not found!")
+                return
 
-    _, binary = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    
+            gaussian_blur = cv2.GaussianBlur(cropped_img, (3, 3), 0)
+
+            _, binary = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
     return binary
 
 def pdf2Image(pdf_path):

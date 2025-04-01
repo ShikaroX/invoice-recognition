@@ -35,7 +35,7 @@ elif opc == 1:
     final_image = functions.preProcessingDigitalReceipt(img)
 
 elif opc == 2:
-    image = "receipts/fatura_digitalizada_2.jpg"
+    image = "receipts/fatura_digitalizada_1.jpg"
 
     if os.path.splitext(image)[1].lower() == ".pdf":
         functions.pdf2Image(image)
@@ -45,18 +45,18 @@ elif opc == 2:
 
     final_image = functions.preProcessingDigitalizedReceipt(img)
 
-extracted_text = ec_feature.extract_text_from_image(final_image)
+# extracted_text = ec_feature.extract_text_from_image(final_image)
 
-system_prompt = "Corrige me este texto: "
+# system_prompt = "Corrige me este texto: "
 
-enhanced_text = deepseek.ask_deepseek(extracted_text, system_prompt)
+# enhanced_text = deepseek.ask_deepseek(extracted_text, system_prompt)
     
-if extracted_text:
-    print("Texto extraído salvo em extracted_text.txt")
-    with open("extracted_text.txt", "w", encoding="utf-8") as f:
-        f.write(enhanced_text)
-else:
-    print("Nenhum texto foi extraído.")
+# if extracted_text:
+#     print("Texto extraído salvo em extracted_text.txt")
+#     with open("extracted_text.txt", "w", encoding="utf-8") as f:
+#         f.write(enhanced_text)
+# else:
+#     print("Nenhum texto foi extraído.")
 
 cv2.imshow("Final image", final_image)
 cv2.waitKey(0)
