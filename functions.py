@@ -24,7 +24,7 @@ def preProcessingDigitalizedReceipt(image):
 
     :return: Preprocessed image.
     """
-    resized_img = resizeImage(image, 1600, 2400)                                                                            
+    resized_img = resizeImage(image, 1300, 2000)                                                                            
     grayscale_img = grayscale(resized_img)                                                                      # Converts BGR to grayscale
 
     median = cv2.medianBlur(grayscale_img, 5)                                                                   # Apply the median filter with a kernel size of 5.

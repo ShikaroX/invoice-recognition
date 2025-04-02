@@ -24,7 +24,7 @@ opc = int(input("Digite a opção: "))
 if opc == 0:
     exit()
 elif opc == 1:
-    image = "pdf_files/fatura_digital_5.pdf"
+    image = "pdf_files/fatura_digital_1.pdf"
 
     if os.path.splitext(image)[1].lower() == ".pdf":
         functions.pdf2Image(image)
@@ -45,12 +45,13 @@ elif opc == 2:
 
     final_image = functions.preProcessingDigitalizedReceipt(img)
 
-extracted_text = ec_feature.extract_text_from_image(final_image)
+extracted_text = dt_feature.extract_text_from_image(final_image)
 
 system_prompt = "Corrige me este texto: "
 
 enhanced_text = deepseek.ask_deepseek(extracted_text, system_prompt)
-    
+
+print(extracted_text) 
 if extracted_text:
     print("Texto extraído salvo em extracted_text.txt")
     with open("extracted_text.txt", "w", encoding="utf-8") as f:
@@ -64,9 +65,9 @@ cv2.waitKey(0)
 with open("extracted_text.txt", "r", encoding="utf-8") as f:
     text = f.read()
     
-fields_extracted = dt_feature.extract_receipt_fields(text)
+fields_extracted = ec_feature.extract_receipt_fields(text)
     
 with open("receipt_data.json", "w", encoding="utf-8") as json_file:
-    dt_feature.json.dump(fields_extracted, json_file, ensure_ascii=False, indent=4)
+    ec_feature.json.dump(fields_extracted, json_file, ensure_ascii=False, indent=4)
     
 print("Dados extraídos salvos em receipt_data.json")

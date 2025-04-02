@@ -1,70 +1,55 @@
-Here is the corrected version of the text:
+Claro! Aqui está o texto corrigido e formatado de forma mais clara:
 
 ---
 
-**PCDIGA, Lda.**
+**Documento Fiscal:**  
+2DSNFS  
+Ms  
 
-**Contribuinte Nº 507082907**  
-**Contratante Regular Comércio Leiria**  
+**Nome do Consumidor Final:**  
+[Insira o Nome Completo]  
 
-**Capital Social:** 150 000,00 €  
-**Matrícula Nº:** 507082907  
+**Número de Identificação Fiscal (NIF):**  
+[Insira o NIF]  
 
----
-
-**Exmo.(s) Senhor(es),**
-
-**Endereço:**  
-Estrada Nacional 242, nº 3556  
-Charneca da Carreira d'Água  
-Rua Pires Antunes, Nº 15, 6º Esquerda  
-Leiria  
-
-**Contactos:**  
-Telefone: 304 500 600 (Chamada para a Rede Fixa Nacional)  
-E-mail: suporte@pcdiga.com  
+**Fatura/Recibo**  
+**Data:** 14/02/2025 **Hora:** 15:18  
+**Nº do SLBD:** 612/80610  
+**Caixa:** W3  
 
 ---
 
-**Fatura N°:**  
-Data de Emissão: [Data da Fatura]  
-Vencimento: [Data de Vencimento]  
+**Lista de Artigos:**  
+
+| Artigo                          | Iva | Quantidade | Valor Unitário | Valor Total |
+|---------------------------------|-----|------------|----------------|-------------|
+| Bilhete de Cinema              | 6%   | 1          | €8,35          | €8,35       |
+| Bilhete de Cinema              | 23%  | 6          | €6,00          | €36,00      |
+| Box Menu                       | 6%   | 1          | €8,40          | €8,40       |
+| Pepsi Zero Pequena             | 23%  | 2          | €3,00          | €6,00       |
+| Pipoca Mista Média            | 23%  | 1          | €3,00          | €3,00       |
+| Tabuleiro                     | 23%  | 1          | €3,00          | €3,00       |
 
 ---
 
-**Resumo da Fatura:**  
-Referência: [Número de Referência]  
-Modo de Pagamento: Pronto pagamento  
-Condições de Pagamento: 1000059907  
-Nº Cliente: [Número do Cliente]  
-Data de Vencimento: 2024-12-21  
-Data de Emissão: 2024-12-21  
+**Total ( Euros ):** €16,75  
+**IVA Incluído:**  
+
+| Taxa   | Valor Tributável | Valor IVA |
+|--------|------------------|-----------|
+| 6,00%  | €7,88            | €0,47     |
+| 23,00% | €6,83            | €1,57     |
+
+**Total IVA:** €2,04  
 
 ---
 
-**Detalhes da Fatura:**  
+**Forma de Pagamento:** Paygate MBWAY  
+**Valor Total a Pagar:** €16,75  
 
-| **Código** | **Descrição**                                                                                     | **Quantidade** | **Preço Unitário (€)** | **Total (€)** |
-|-------------|-----------------------------------------------------------------------------------------------------|----------------|-------------------------|---------------|
-| P056036     | Fonte de Alimentação Seasonic Focus GX-750W 80 Plus Gold Full Modular - FOCUS                   | 1              | 100,00                 | 100,00        |
-| P047384     | Processador AMD Ryzen 5 7600X Zen 4 6-Core                                                                                                                | 1              | 200,00                 | 200,00        |
-| ...         | ...                                                                                                                                                           | ...            | ...                     | ...           |
-
-**Total a Pagar:** €1 039,60  
-
----
-
-**Nota:**  
-Os artigos constantes desta fatura permanecem propriedade da PCDIGA, Lda. até liquidação total.  
-
-Recebemos, relativamente ao pagamento da fatura, a quantia de um mil e trinta e nove euros e sessenta cêntimos.  
-
----
-
-**Processado por:**  
-Programa Certificado nº 2563/AT/Fatura 9180923896/SAP  
-Página 1 de 1  
+**Referência do Processamento:** Tb6f1d4627ae4484b497c1d70a046be4  
+**Validado por programa certificado nº 0930/AT**  
 
 --- 
 
-This version corrects formatting, spacing, and other issues to ensure clarity and professionalism.
+Espero que isso ajude!
