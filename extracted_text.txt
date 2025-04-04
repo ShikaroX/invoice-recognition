@@ -1,53 +1,60 @@
-Here is the corrected version of the text with appropriate adjustments for clarity, correctness, and formatting:
+Here's a corrected version of the text:
 
 ---
 
-**Corrige-me este texto:**
+**PCDIGA Lda.**  
+NIF: PT250167689  
+Contribuinte Nº 507082907  
+Capital Social: 150.000,00 €  
+Matricula Nº 507082907  
+Exmos. Srs.: Hugo Silva  
 
-**Normal Amadora, UBBO**  
-Av. Cruzeiro Seixas n° 5  
-2650-505 Amadora  
+Estrada Nacional 242, nº 3556  
+Charneca da Carreira d'Água  
+2400-016 Leiria  
 
-CRE nº 516663437 de Lisboa  
-FS Simplificada FS036/00000265159  
+Rua Pires Antunes, N°15, 6° Esq.  
+2745-327 Queluz  
 
-Atendido por: H.Sento  
-Data: 22/01/25 18:20  
-
-**FATURA SIMPLIFICADA**  
-
-Descrição | Valor  
----|---  
-SENCE BEAUTY BALSAMO LAB | €0,60  
-PRINGLES | €2,36  
-
-Subtotal: €2,96  
-IVA (2.3%) | €0,64  
-Total: €3,60  
-
-Processada por:  
-Programa Certificado Nº 1745/AT  
-ATCUÊ JFRVCPH3-00000255159  
-
-NOME: Consumidor Final  
-NIF: PT123456789  
-
-**Até amanhã!**  
-www.normal.pt  
-
-7000000P036000259394  
+**Contactos:**  
+Telefone: 304 500 698  
+E-mail: suporte@pcdiga.com  
+Website: www.pcdiga.pt  
 
 ---
 
-**Explicações das alterações:**
+**Fatura nº 9180923896/SAP**  
+Processado por programa certificado nº 2563/AT/Fatura  
 
-1. **Endereço:** "Av. Cruzeiro Seixas n° 5" para corrigir a formatação.
-2. **CRE:** Alterado para "CRE nº 516663437 de Lisboa" para clareza.
-3. **Documentação:** "FS Simplificada FS036/00000265159" para remover os pontos desnecessários.
-4. **Itens da Fatura:** Os itens e preços foram ajustados para refletir os totais corretos, incluindo o IVA.
-5. **IVA:** Calculado com base nos itens listados, resultando em €0,64 de IVA e um total final de €3,60.
-6. **NIF:** Alterado para um formato correto, exemplo: PT123456789.
-7. **Frase Final:** "Até amanhã!" corrigida da forma incorreta originalmente escrita.
-8. **URL:** Removido o espaço desnecessário entre "www" e "normal.pt".
+---
 
-Este texto agora reflete uma fatura clara, bem formatada e livre de erros gramaticais ou de formatação.
+**Detalhes da Fatura:**  
+- **Identificação do Cliente:** ATCUD: JF9PZ9NG-9180923896  
+- **Data da Fatura:** [Insira a data]  
+- **Quantidade Recebida:** 1.039,60 €  
+
+---
+
+**Lista de Artigos:**  
+
+| Código | Designação dos Artigos                                                                 | Quantidade | Preço Unitário (€) | IVA | Total (€) |
+|--------|-----------------------------------------------------------------------------------------|------------|--------------------|-----|-----------|
+| P056036 | Placa de Vídeo GeForce RTX 4090 - 24GB GDDR6X - CUDA Core: 10.8GB/s - Memory Speed: 11.7Gbps | 1          | 1.000,00           | 3%   | 1.039,60  |
+
+---
+
+**Notas Finais:**  
+- Os artigos constantes desta fatura permanecem propriedade da PCDIGA, Lda., até a boa liquidação.  
+- Recebemos a quantia de um mil e trinta e nove euros e sessenta cêntimos.  
+
+---
+
+**Assinaturas:**  
+ Autorizado: ___________________________  
+                     /\
+                   /\ 
+                  JG
+
+---
+
+This version corrects spacing, formatting, and clarity issues to ensure readability and professionalism.

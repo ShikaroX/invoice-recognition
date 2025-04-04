@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+
+# Virtual environment
+receipts_proj_env/
+
+# Output directories
+receipts/
+pdf_files/
+
+# Generated files
+original_image.jpg
+preprocessed_image.jpg
+extracted_text.txt
+receipt_data.json

@@ -9,6 +9,7 @@ import functions
 import ec_feature
 import dt_feature
 import deepseek
+import re
 
 
 print("~" * 40)
@@ -35,7 +36,7 @@ elif opc == 1:
     final_image = functions.preProcessingDigitalReceipt(img)
 
 elif opc == 2:
-    image = "receipts/fatura_digitalizada_1.jpg"
+    image = "receipts/fatura_digitalizada_7_inv.jpg"
 
     if os.path.splitext(image)[1].lower() == ".pdf":
         functions.pdf2Image(image)
@@ -45,28 +46,34 @@ elif opc == 2:
 
     final_image = functions.preProcessingDigitalizedReceipt(img)
 
-# extracted_text = ec_feature.extract_text_from_image(final_image)
+orientation = pytesseract.image_to_osd(final_image)
+print(orientation)
+if orientation[39:42] == '180':
+    final_image = cv2.rotate(final_image, cv2.ROTATE_180)
 
-# system_prompt = "Corrige me este texto: "
+extracted_text = ec_feature.extract_text_from_image(final_image)
 
-# enhanced_text = deepseek.ask_deepseek(extracted_text, system_prompt)
+system_prompt = "Corrige me este texto: "
+
+enhanced_text = deepseek.ask_deepseek(extracted_text, system_prompt)
     
-# if extracted_text:
-#     print("Texto extraído salvo em extracted_text.txt")
-#     with open("extracted_text.txt", "w", encoding="utf-8") as f:
-#         f.write(enhanced_text)
-# else:
-#     print("Nenhum texto foi extraído.")
+if extracted_text:
+    print("Texto extraído salvo em extracted_text.txt")
+    with open("extracted_text.txt", "w", encoding="utf-8") as f:
+        f.write(enhanced_text)
+else:
+    print("Nenhum texto foi extraído.")
 
-cv2.imshow("Final image", final_image)
+cv2.imwrite('original_image.jpg', img)
+cv2.imwrite('preprocessed_image.jpg', final_image)
 cv2.waitKey(0)
 
-with open("extracted_text.txt", "r", encoding="utf-8") as f:
-    text = f.read()
+# with open("extracted_text.txt", "r", encoding="utf-8") as f:
+#     text = f.read()
     
-fields_extracted = dt_feature.extract_receipt_fields(text)
+# fields_extracted = dt_feature.extract_receipt_fields(text)
     
-with open("receipt_data.json", "w", encoding="utf-8") as json_file:
-    dt_feature.json.dump(fields_extracted, json_file, ensure_ascii=False, indent=4)
+# with open("receipt_data.json", "w", encoding="utf-8") as json_file:
+#     dt_feature.json.dump(fields_extracted, json_file, ensure_ascii=False, indent=4)
     
-print("Dados extraídos salvos em receipt_data.json")
+# print("Dados extraídos salvos em receipt_data.json")

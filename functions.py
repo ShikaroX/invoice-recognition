@@ -5,16 +5,21 @@ from pdf2image import convert_from_path
 import os
 
 def resizeImage(image, width, height):
-    return cv2.resize(image, (width, height), interpolation=cv2.INTER_CUBIC)
+    return cv2.resize(image, (width, height))
 
 def grayscale(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 def preProcessingDigitalReceipt(image):
-    resized_img = resizeImage(image, 1600, 2400)    
+
+    resized_img = resizeImage(image, 2550, 3300)    
     grayscale_img = grayscale(resized_img)
 
-    return grayscale_img
+    gaussian_blur = cv2.GaussianBlur(grayscale_img, (5, 5), 0)
+
+    _, binary = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    return binary
 
 def preProcessingDigitalizedReceipt(image):
     """
@@ -25,7 +30,7 @@ def preProcessingDigitalizedReceipt(image):
     :return: Preprocessed image.
     """
 
-    resized_img = resizeImage(image, 900, 1100)
+    resized_img = resizeImage(image, 2550, 3300)
 
     grayscale_img = grayscale(resized_img)
 
@@ -33,7 +38,7 @@ def preProcessingDigitalizedReceipt(image):
 
     thresh = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
-    kernel = np.ones((30, 30), np.uint8)
+    kernel = np.ones((150, 150), np.uint8)
     dilate = cv2.dilate(thresh, kernel)
 
     contours, _ = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -85,8 +90,8 @@ def preProcessingDigitalizedReceipt(image):
             else:
                 print("Bounding box not found!")
                 return
-
-            gaussian_blur = cv2.GaussianBlur(cropped_img, (3, 3), 0)
+            
+            gaussian_blur = cv2.GaussianBlur(cropped_img, (5, 5), 0)
 
             _, binary = cv2.threshold(gaussian_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
