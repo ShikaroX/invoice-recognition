@@ -1,11 +1,17 @@
 {
-    "empresa": "Claro! Aqui está o texto corrigido e formatado de forma mais clara:",
-    "data": "14/02/2025",
-    "hora": "15:18",
-    "numero_fatura": "Desconhecido",
-    "nif": "Desconhecido",
-    "total": "Desconhecido",
-    "troco": "Desconhecido",
-    "metodo_pagamento": "Desconhecido",
-    "produtos": []
+    "empresa": "RNA Rede Nacional de Expressos, LDA",
+    "data": "04/02/2025",
+    "hora": "Desconhecido",
+    "numero_fatura": "Recibo",
+    "nif": "503508225",
+    "iva_total": "0.00 €",
+    "total": "43.00 €",
+    "metodo_pagamento": "Cartão",
+    "produtos": [
+        {
+            "descricao": "Bilhete Adulto (26 a 59 anos)",
+            "quantidade": "1",
+            "valor_unitario": "43.00 €"
+        }
+    ]
 }

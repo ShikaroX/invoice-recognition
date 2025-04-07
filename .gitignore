@@ -1,10 +1,6 @@
 # Ignore python cache
 __pycache__/
 
-# Ignore IDE settings and virtual envioremnts
-.vscode/
-.venv/
-
 # Ignore files
 pdf_files/
 receipts/

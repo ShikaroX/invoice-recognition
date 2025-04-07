@@ -2,53 +2,65 @@ Claro! Aqui está o texto corrigido e formatado de forma mais clara:
 
 ---
 
-**Documento Fiscal:**  
-2DSNFS  
-Ms  
+**Fatura/Recibo N.º FRWEB2503/53149**
 
-**Nome do Consumidor Final:**  
-[Insira o Nome Completo]  
+**RNA Rede Nacional de Expressos, LDA**  
+Terminal Rodoviário, Praça Humberto Delgado, Estrada das Laranjeiras  
+Lisboa, Portugal  
 
-**Número de Identificação Fiscal (NIF):**  
-[Insira o NIF]  
+Telefone: +351 217 524 524 (Chamada para rede fixa nacional)  
+E-mail: fatura@grnexpressos.pt  
+Site: https://www.redeexpressos.pt/  
 
-**Fatura/Recibo**  
-**Data:** 14/02/2025 **Hora:** 15:18  
-**Nº do SLBD:** 612/80610  
-**Caixa:** W3  
-
----
-
-**Lista de Artigos:**  
-
-| Artigo                          | Iva | Quantidade | Valor Unitário | Valor Total |
-|---------------------------------|-----|------------|----------------|-------------|
-| Bilhete de Cinema              | 6%   | 1          | €8,35          | €8,35       |
-| Bilhete de Cinema              | 23%  | 6          | €6,00          | €36,00      |
-| Box Menu                       | 6%   | 1          | €8,40          | €8,40       |
-| Pepsi Zero Pequena             | 23%  | 2          | €3,00          | €6,00       |
-| Pipoca Mista Média            | 23%  | 1          | €3,00          | €3,00       |
-| Tabuleiro                     | 23%  | 1          | €3,00          | €3,00       |
+**Contribuinte:** 503508225  
+**Capital Social:** 249.398,95 €  
+Registada na Conservatória de Lisboa como N.º 503508225  
 
 ---
 
-**Total ( Euros ):** €16,75  
-**IVA Incluído:**  
+### **C2Ssh Processado por programa certificado N.º 2860/AT**
 
-| Taxa   | Valor Tributável | Valor IVA |
-|--------|------------------|-----------|
-| 6,00%  | €7,88            | €0,47     |
-| 23,00% | €6,83            | €1,57     |
-
-**Total IVA:** €2,04  
+**Contribuinte:** Consumidor Final  
+**Cliente:** Vv/Ref Enc./Orc.  
+**Moeda:** EUR  
+**Prazo de vencimento:** Pronto Pgto.  
+**Data de vencimento:** 04/02/2025  
 
 ---
 
-**Forma de Pagamento:** Paygate MBWAY  
-**Valor Total a Pagar:** €16,75  
+### **Resumo dos Artigos/Serviços**
 
-**Referência do Processamento:** Tb6f1d4627ae4484b497c1d70a046be4  
-**Validado por programa certificado nº 0930/AT**  
+| **Designação**                     | **Qtd.** | **Unidade** | **Preço** | **Imposto** | **Total** |
+|------------------------------------|----------|-------------|------------|--------------|-----------|
+| Bilhete Adulto (26 a 59 anos)     | 1        | Unidade     | 43,00 €    | Isento       | 43,00 €   |
+
+---
+
+### **Detalhes da Compra**
+
+- **Data da compra:** 04/02/2025  
+- **Local do bilhete:** Lisboa (Sete Rios) para Jerónimo de Alburquerque (Espanha)  
+
+---
+
+### **Resumo dos Impostos**
+
+| **Designação**             | **Valor** | **Incidência** | **Total** |
+|----------------------------|-----------|----------------|-----------|
+| Isento(Artigo 14 do CIVA)  | 0,00 €    |                | 43,00 €   |
+
+---
+
+### **Meios de Pagamento Utilizados**
+
+| **Data**      | **Método** | **Valor**       |
+|---------------|-------------|-----------------|
+| 04/02/2025    | Cartão      | 43,00 €         |
+
+---
+
+**Observações:**  
+Compravoucher realizado via Website  
 
 --- 
 
