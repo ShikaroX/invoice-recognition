@@ -25,7 +25,7 @@ opc = int(input("Digite a opção: "))
 if opc == 0:
    exit()
 elif opc == 1:
-    image = "pdf_files/fatura_digital_2.pdf"
+    image = "pdf_files/fatura_digital_5.pdf"
 
     if os.path.splitext(image)[1].lower() == ".pdf":
         functions.pdf2Image(image)

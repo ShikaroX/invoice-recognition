@@ -1,67 +1,71 @@
-Claro! Aqui está o texto corrigido e formatado de forma mais clara:
+Aqui está o texto corrigido:
 
 ---
 
-**Fatura/Recibo N.º FRWEB2503/53149**
+**FATURA**
 
-**RNA Rede Nacional de Expressos, LDA**  
-Terminal Rodoviário, Praça Humberto Delgado, Estrada das Laranjeiras  
-Lisboa, Portugal  
+PCDIGALDA  
+FATURAFBZA1/9180923896  
 
-Telefone: +351 217 524 524 (Chamada para rede fixa nacional)  
-E-mail: fatura@grnexpressos.pt  
-Site: https://www.redeexpressos.pt/  
+Contribuinte: N507082907  
+Cons.Reg.Com.: Leiria  
+Capital Social: 150.000,00 EUR  
+Matrícula: N507082907  
 
-**Contribuinte:** 503508225  
-**Capital Social:** 249.398,95 €  
-Registada na Conservatória de Lisboa como N.º 503508225  
+Exmo.(s) Sr.(s),  
 
----
+Hugo Silva  
+Rua Pires Antunes, N°(0)15  
+6(o) Esq., 2400-16 Leiria  
+Total: 2745.327 Que Luz  
 
-### **C2Ssh Processado por programa certificado N.º 2860/AT**
+www.pediga.com  
+NIF: PT250167689  
+Telefone: 304500600 (Chamada para a rede fixa nacional)  
+Email: suporte@pcediga.com  
 
-**Contribuinte:** Consumidor Final  
-**Cliente:** Vv/Ref Enc./Orc.  
-**Moeda:** EUR  
-**Prazo de vencimento:** Pronto Pgto.  
-**Data de vencimento:** 04/02/2025  
+**REFERÊNCIA / MODO DE PAGAMENTO / COND. DE PAGAMENTO / N. CLIENTE / VENCIMENTO / DATA**
 
----
+**ARTIGO / DESCRIOÇÃO / QT./ E/UNID. / IVA / TOTAL**
 
-### **Resumo dos Artigos/Serviços**
+1. POSSO36 - Fonte de Alimentação Seasonic Focus GX750W 80 Plus Gold Full Modular FOCUS  
+   1 / 109,90 € / 23% / 109,90 €  
 
-| **Designação**                     | **Qtd.** | **Unidade** | **Preço** | **Imposto** | **Total** |
-|------------------------------------|----------|-------------|------------|--------------|-----------|
-| Bilhete Adulto (26 a 59 anos)     | 1        | Unidade     | 43,00 €    | Isento       | 43,00 €   |
+2. PO47384 - Processador AMD Ryzen 5 7600X "Zen 4" 6 Core 4.7 GHz Turbo 5.3 GHz, 38 MB Cache  
+   1 / 219,90 € / 23% / 219,90 €  
 
----
+3. Página Continua...  
 
-### **Detalhes da Compra**
+**SOMA DOS ITENS:**  
+Total Bruto: [...] €  
+IVA: [...] €  
+Total Liquido: [...] €  
 
-- **Data da compra:** 04/02/2025  
-- **Local do bilhete:** Lisboa (Sete Rios) para Jerónimo de Alburquerque (Espanha)  
+---  
 
----
-
-### **Resumo dos Impostos**
-
-| **Designação**             | **Valor** | **Incidência** | **Total** |
-|----------------------------|-----------|----------------|-----------|
-| Isento(Artigo 14 do CIVA)  | 0,00 €    |                | 43,00 €   |
+**(Sra./Sr.) Hugo Silva**  
+Expedido em 21 de dezembro de 2024  
 
 ---
 
-### **Meios de Pagamento Utilizados**
+**Quadro Resumo do IVA**  
+- Base Impositiva: [...] €  
+- Taxa de IVA: 23%  
+- Montante do IVA: [...] €  
 
-| **Data**      | **Método** | **Valor**       |
-|---------------|-------------|-----------------|
-| 04/02/2025    | Cartão      | 43,00 €         |
+---  
+
+**Modo de Expedição:**  
+Data: 21/12/2024  
+N. Registo de Entrega: PTO1107594  
+N. Registo Postal: PT101515  
+ código postal: PTO6GOO01659  
 
 ---
 
-**Observações:**  
-Compravoucher realizado via Website  
+**Notas:**  
+- A fatura foi emitida por um programa certificado SAP Fatura 9180923896.  
+- Consulte as nossas condições de pagamento em www.pediga.com.  
 
---- 
-
-Espero que isso ajude!
+---  
+*Página 1 de 1*

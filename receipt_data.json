@@ -1,17 +1,22 @@
 {
-    "empresa": "RNA Rede Nacional de Expressos, LDA",
-    "data": "04/02/2025",
+    "empresa": "PCDIGALDA",
+    "data": "21/12/2024",
     "hora": "Desconhecido",
-    "numero_fatura": "Recibo",
-    "nif": "503508225",
-    "iva_total": "0.00 €",
-    "total": "43.00 €",
-    "metodo_pagamento": "Cartão",
+    "numero_fatura": "PCDIGALDA",
+    "nif": "250167689",
+    "iva_total": "Taxa: 23%",
+    "total": "329.80 €",
+    "metodo_pagamento": "Desconhecido",
     "produtos": [
         {
-            "descricao": "Bilhete Adulto (26 a 59 anos)",
+            "descricao": "POSSO36 - Fonte de Alimentação Seasonic Focus GX750W 80 Plus Gold Full Modular FOCUS",
             "quantidade": "1",
-            "valor_unitario": "43.00 €"
+            "valor_unitario": "109.90 €"
+        },
+        {
+            "descricao": "PO47384 - Processador AMD Ryzen 5 7600X \"Zen 4\" 6 Core 4.7 GHz Turbo 5.3 GHz, 38 MB Cache",
+            "quantidade": "1",
+            "valor_unitario": "219.90 €"
         }
     ]
 }
