@@ -98,6 +98,13 @@ def extract_with_regex(text):
     iva_reduzido = "0.00"
     iva_normal = "0.00"
     patterns_iva = [
+        r'TOTAL\s+DE\s+IVA[:\s€]*([\d.,]+)',
+        r'Total\s+IVA[:\s€]*([\d.,]+)',
+        r'Total\s*I\.V\.A\.[:\s€]*([\d.,]+)',
+        r'IVA\s+Total[:\s€]*([\d.,]+)',
+        r'Isento\(.*?\)\s*\|\s*([\d.,]+)',
+        r'IVA\s+incluído[:\s€]*([\d.,]+)',
+        r'IVA\s+cobrado[:\s€]*([\d.,]+)',
         r'IVA\s+não\s+tributário\s+\(taxa\s+reduzida\s+em\s+vigor\):\s*([\d.,]+)',
         r'IVA\s+não\s+tributário\s+\(taxa\s+normal\s+em\s+vigor\):\s*([\d.,]+)',
     ]
@@ -219,13 +226,21 @@ def extract_receipt_fields(text):
 
     empresa_final = values.get("empresa_override", entities["empresa"]).split('\n')[0].strip()
 
-    # Correção do número da fatura se estiver igual à empresa
     if values["numero_fatura"].upper() == empresa_final.upper():
-        match = re.search(r'FATURA\s*([A-Z0-9\/\-]+)', text, re.IGNORECASE)
-        if match:
-            numero_corrigido = match.group(1).strip()
-            if numero_corrigido.upper() != empresa_final.upper():
-                values["numero_fatura"] = numero_corrigido
+        padroes_fatura = [
+            r'FATURA[\s:]*([A-Z]+\d+/\d+)',
+            r'FATURA([A-Z]+\d+/\d+)',
+            r'FATURA.*?([A-Z]{2,}\d{2,}/\d{5,})',
+            r'N[ºº]?\s*[:\-]?\s*([A-Z0-9]+/\d+)',
+            r'FATURA\s*N[ºº]?\s*[:\-]?\s*([A-Z0-9/\-]+)'
+        ]
+        for pat in padroes_fatura:
+            match = re.search(pat, text, re.IGNORECASE)
+            if match:
+                numero_corrigido = match.group(1).strip()
+                if numero_corrigido.upper() != empresa_final.upper():
+                    values["numero_fatura"] = numero_corrigido
+                    break
 
     resultado = {
         "empresa": empresa_final,
